@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">IPL</string>
+    <string name="action_settings">Settings</string>
+    <string name="team_name">Team Name</string>
+    <string name="team_owner">Owner</string>
+    <string name="team_coach">Coach</string>
+    <string name="team_captain">Captain</string>
+    <string name="team_venue">Venue</string>
+    <string name="team_logo_desc">teamLogo</string>
+    <string name="title_activity_player_view">PlayerView</string>
+    <string name="player_img_dec">player Image</string>
+    <string name="player_dob">DOB</string>
+    <string name="player_nationality">Nationality</string>
+    <string name="player_bowling_style">bowling Style</string>
+    <string name="player_batting_style">Batting Style</string>
+    <string name="player_role">Player role</string>
+</resources>
