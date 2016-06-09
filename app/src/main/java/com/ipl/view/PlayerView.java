@@ -1,6 +1,5 @@
 package com.ipl.view;
 
-import android.animation.Animator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 
@@ -39,8 +39,7 @@ import java.io.FileNotFoundException;
 
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
-import jp.wasabeef.recyclerview.animators.FadeInAnimator;
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
 
 public class PlayerView extends AppCompatActivity {
     public static String TAG = "TeamView";
@@ -59,6 +58,14 @@ public class PlayerView extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //Toolbar back button enabled
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
         collapsingToolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
@@ -109,7 +116,7 @@ public class PlayerView extends AppCompatActivity {
                     playerInfoViewHolder.nationality.setText(playerInfo.getPlayer_nationality());
 
                     //Try to load image from local storage
-                    PictureUtil.LoadImageAsync loadImageAsync=new PictureUtil.LoadImageAsync() {
+                    PictureUtil.LoadImageAsync loadImageAsync = new PictureUtil.LoadImageAsync() {
                         @Override
                         protected void onPostExecute(Bitmap bitmap) {
                             super.onPostExecute(bitmap);
@@ -146,8 +153,8 @@ public class PlayerView extends AppCompatActivity {
                             }
                         }
                     };
-                    if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)
-                        loadImageAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mTeamName, playerInfo.getPlayer_name());
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+                        loadImageAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mTeamName, playerInfo.getPlayer_name());
                     else
                         loadImageAsync.execute(mTeamName, playerInfo.getPlayer_name());
                 }
@@ -156,6 +163,14 @@ public class PlayerView extends AppCompatActivity {
             //Setting recycle view
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.playerRecycleView);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+            VerticalRecyclerViewFastScroller fastScroller = (VerticalRecyclerViewFastScroller) findViewById(R.id.fast_scroller);
+
+            // Connect the recycler to the scroller (to let the scroller scroll the list)
+            fastScroller.setRecyclerView(recyclerView);
+
+            // Connect the scroller to the recycler (to let the recycler scroll the scroller's handle)
+            recyclerView.setOnScrollListener(fastScroller.getOnScrollListener());
 
             //Setting recycle view animation
             AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(adapter);

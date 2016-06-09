@@ -7,4 +7,5 @@
     <dimen name="margin_team">10dp</dimen>
     <dimen name="team_details">12sp</dimen>
     <dimen name="team_margin_left">8dp</dimen>
+    <dimen name="however_wide_you_want_this">15dp</dimen>
 </resources>

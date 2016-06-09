@@ -10,7 +10,6 @@
     tools:showIn="@layout/activity_team_view">
 
     <android.support.v7.widget.RecyclerView
-        android:background="@color/sideColor"
         android:id="@+id/playerRecycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

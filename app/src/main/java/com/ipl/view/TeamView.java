@@ -78,11 +78,11 @@ public class TeamView extends AppCompatActivity {
 
                         //Adding activity transition for api 21 and +
                         ActivityOptionsCompat options = ActivityOptionsCompat.
-                                makeSceneTransitionAnimation(TeamView.this, (View)teamInfoViewHoler.teamLogo, "TeamImage");
+                                makeSceneTransitionAnimation(TeamView.this, (View) teamInfoViewHoler.teamLogo, "TeamImage");
 
                         //Starting Player view class
-                        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP)
-                            startActivity(intent,options.toBundle());
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                            startActivity(intent, options.toBundle());
                         else
                             startActivity(intent);
                     }

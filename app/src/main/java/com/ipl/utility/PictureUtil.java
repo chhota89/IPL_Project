@@ -87,9 +87,9 @@ public class PictureUtil {
         @Override
         protected Bitmap doInBackground(String... params) {
             try {
-                return loadFileFromLocalStorage(params[0],params[1]);
+                return loadFileFromLocalStorage(params[0], params[1]);
             } catch (FileNotFoundException e) {
-                Log.e(TAG, "doInBackground: Image is not found" );
+                Log.e(TAG, "doInBackground: Image is not found");
                 return null;
             }
         }

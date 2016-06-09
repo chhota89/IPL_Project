@@ -9,22 +9,19 @@
     tools:context="com.ipl.view.PlayerView"
     tools:showIn="@layout/activity_player_view">
 
-    <android.support.v4.widget.NestedScrollView
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/playerRecycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="fill_vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:scrollbarAlwaysDrawVerticalTrack="true">
 
+    </android.support.v7.widget.RecyclerView>
 
-        <android.support.v7.widget.RecyclerView
-            android:background="@color/sideColor"
-            android:id="@+id/playerRecycleView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbarAlwaysDrawVerticalTrack="true">
-
-        </android.support.v7.widget.RecyclerView>
-
-    </android.support.v4.widget.NestedScrollView>
+    <xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller
+        android:id="@+id/fast_scroller"
+        android:layout_width="@dimen/however_wide_you_want_this"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true" />
 
 </android.support.constraint.ConstraintLayout>
