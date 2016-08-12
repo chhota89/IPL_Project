@@ -21,7 +21,6 @@ import android.widget.ImageView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -146,8 +145,8 @@ public class PlayerView extends AppCompatActivity {
                                     public void onFailure(@NonNull Exception exception) {
                                         Log.e(TAG, "onFailure: ", exception);
                                         // Send Crash reports to the firebase analytics
-                                        FirebaseCrash.log(exception.getMessage());
-                                        FirebaseCrash.report(exception);
+                                        /*FirebaseCrash.log(exception.getMessage());
+                                        FirebaseCrash.report(exception);*/
                                     }
                                 });
                             }

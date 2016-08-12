@@ -13,11 +13,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.crash.FirebaseCrash;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -29,9 +32,12 @@ import com.ipl.constant.ProjectConstant;
 import com.ipl.model.TeamInfo;
 import com.ipl.utility.FireBaseEvent;
 import com.ipl.utility.PictureUtil;
+import com.ipl.utility.PlayServiceChecker;
 import com.ipl.viewholder.TeamInfoViewHoler;
 
 import java.io.FileNotFoundException;
+
+import static com.firebase.ui.auth.ui.AcquireEmailHelper.RC_SIGN_IN;
 
 public class TeamView extends AppCompatActivity {
 
@@ -47,10 +53,18 @@ public class TeamView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         storageRef = FirebaseStorage.getInstance().getReference();
         setContentView(R.layout.activity_team_view);
+
+        //Checking for google play service is installedon device or not
+        if(!PlayServiceChecker.isGooglePlayServicesAvailable(TeamView.this))
+            Toast.makeText(TeamView.this,"This device is not supported for required Goole Play Services",Toast.LENGTH_LONG).show();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Log.d(TAG, "InstanceID token: .................. " + FirebaseInstanceId.getInstance().getToken());
+        //Display remote config setting
+        FireBaseEvent.checkFireBaseRemoteConfig();
+
+        Log.d(TAG, "InstanceID token: .... ..." + FirebaseInstanceId.getInstance().getToken());
 
         //Creating the reference of Firebase Data base
         mRef = FirebaseDatabase.getInstance().getReference();
@@ -122,8 +136,8 @@ public class TeamView extends AppCompatActivity {
                         public void onFailure(@NonNull Exception exception) {
                             Log.e(TAG, "onFailure: ", exception);
                             // Send Crash reports to the firebase analytics
-                            FirebaseCrash.log(exception.getMessage());
-                            FirebaseCrash.report(exception);
+                            //FirebaseCrash.log(exception.getMessage());
+                            //FirebaseCrash.report(exception);
                         }
                     });
                 }
@@ -138,4 +152,5 @@ public class TeamView extends AppCompatActivity {
         //setting adapter to recycle view
         recyclerView.setAdapter(adapter);
     }
+
 }

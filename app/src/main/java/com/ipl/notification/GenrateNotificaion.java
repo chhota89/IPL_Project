@@ -15,6 +15,10 @@ import com.ipl.view.TeamView;
 
 /**
  * Created by bridgeit on 3/6/16.
+ *
+ * purpose
+ * 1 create service class which will handle massage is arrived.
+ * 2 When massage is arrived then generate notification.
  */
 
 public class GenrateNotificaion extends FirebaseMessagingService {
