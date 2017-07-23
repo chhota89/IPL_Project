@@ -12,13 +12,14 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.ipl.R;
 
-import static com.google.android.gms.internal.zzs.TAG;
 
 /**
  * Created by bridgeit on 4/6/16.
  */
 
 public class FireBaseEvent {
+
+    private  static final String TAG = FireBaseEvent.class.getSimpleName();
 
     public static void sendImageDownloadEvent(Context context, String name, String category) {
         //Initialize analytics object.

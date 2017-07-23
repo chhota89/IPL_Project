@@ -37,7 +37,6 @@ import com.ipl.viewholder.TeamInfoViewHoler;
 
 import java.io.FileNotFoundException;
 
-import static com.firebase.ui.auth.ui.AcquireEmailHelper.RC_SIGN_IN;
 
 public class TeamView extends AppCompatActivity {
 
